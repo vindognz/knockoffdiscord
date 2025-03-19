@@ -1,5 +1,16 @@
 <?php
 
+function mainScreen() {
+?>
+    <header>
+        <nav>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </nav>
+    </header>
+<?php
+}
+
 function loginScreen($username) {
 ?>
     <section id="login">

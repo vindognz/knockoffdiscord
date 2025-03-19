@@ -112,6 +112,8 @@ if (isset($_POST["logout"])) {
                 }
             } elseif ($request_uri == 'register') {
                 registerScreen($username, $email);
+            } else {
+                mainScreen();
             }
         ?>
 
