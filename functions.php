@@ -13,6 +13,20 @@ function loginScreen($username) {
 <?php
 }
 
+function registerScreen($username, $email) {
+?>
+    <section id="register">
+        <p>Register:</p>
+        <form method="post" action="/">
+            <input type="email" name="email" value="<?=$email?>" placeholder="Email">
+            <input type="text" name="username" value="<?=$username?>" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" name="register" value="Register">
+        </form>
+    </section>
+<?php
+}
+
 function appScreen($username) {
 ?>
     <section id="app">

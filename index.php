@@ -34,7 +34,7 @@ if (isset($_POST["login"])) { // checks if you loaded the page by pressing the s
             // if the correct password in the db is the same as the inputted one:
             if ($dbPassword == $password) {
                 // successful login!
-                $_SESSION['login'] = true;
+                $_SESSION['loggedIn'] = true;
                 $_SESSION['username'] = $username;
             } else {
                 // unsuccessful login.
@@ -46,8 +46,21 @@ if (isset($_POST["login"])) { // checks if you loaded the page by pressing the s
     }
 }
 
+if (isset($_POST["register"])) {
+    $username = "";
+    if (isset($_POST["username"])) {
+        $username = preg_replace("/[^a-zA-Z0-9]/", "", $_POST["username"]);
+    }
+
+    $password = "";
+    if (isset($_POST["password"])) {
+        $password = preg_replace("/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)]/", "", $_POST["password"]);
+    }
+    $email = "";
+}
+
 if (isset($_POST["logout"])) {
-    $_SESSION["login"] = false;
+    $_SESSION["loggedIn"] = false;
 }
 ?>
 
@@ -63,7 +76,15 @@ if (isset($_POST["logout"])) {
         <?php
             session_start();
 
-            if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
+            $request_uri = trim($_SERVER['REQUEST_URI'], '/');
+
+            if ($request_uri == 'login') {
+                loginScreen($username);
+            } elseif ($request_uri == 'register') {
+                registerScreen($username, $email);
+            }
+
+            if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                 appScreen($_SESSION['username']);
             } else {
                 loginScreen($username);
