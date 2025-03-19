@@ -36,6 +36,8 @@ if (isset($_POST["login"])) { // checks if you loaded the page by pressing the s
                 // successful login!
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['username'] = $username;
+
+                header('location: '.'/');
             } else {
                 // unsuccessful login.
                 ?> <script>alert("Invalid username or password")</script> <?php
@@ -61,6 +63,7 @@ if (isset($_POST["register"])) {
 
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = false;
+    header('location: '.'/');
 }
 ?>
 
@@ -79,15 +82,13 @@ if (isset($_POST["logout"])) {
             $request_uri = trim($_SERVER['REQUEST_URI'], '/');
 
             if ($request_uri == 'login') {
-                loginScreen($username);
+                if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+                    appScreen($_SESSION['username']);
+                } else {
+                    loginScreen($username);
+                }
             } elseif ($request_uri == 'register') {
                 registerScreen($username, $email);
-            }
-
-            if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
-                appScreen($_SESSION['username']);
-            } else {
-                loginScreen($username);
             }
         ?>
 

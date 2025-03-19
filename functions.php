@@ -17,7 +17,7 @@ function registerScreen($username, $email) {
 ?>
     <section id="register">
         <p>Register:</p>
-        <form method="post" action="/">
+        <form method="post" action="/" id="register">
             <input type="email" name="email" value="<?=$email?>" placeholder="Email">
             <input type="text" name="username" value="<?=$username?>" placeholder="Username">
             <input type="password" name="password" placeholder="Password">

@@ -18,3 +18,8 @@ body {
     height: 100vh;
     margin: 0;
 }
+
+form input {
+    display: block;
+    margin: 5px;
+}
