@@ -78,15 +78,17 @@ if (isset($_POST["register"])) {
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password, salt) VALUES (:username, :email, :password, :salt)");
             $stmt->execute([':username' => $username, ':email' => $email, ':password' => hash('sha256', ($salt.$password)), ':salt' => $salt]);
 
-        } catch (PDOException $e) { // catches any errors within the database manipulation
-            echo "Error: " . $e->getMessage(); // and echos them to the screen
+            header('location: '.'/login');
+
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
         }
     }
 }
 
 if (isset($_POST["logout"])) {
     $_SESSION["loggedIn"] = false;
-    header('location: '.'/login');
+    header('location: '.'/');
 }
 ?>
 

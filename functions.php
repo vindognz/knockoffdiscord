@@ -20,6 +20,7 @@ function loginScreen($username) {
             <input type="password" name="password" placeholder="Password">
             <input type="submit" name="login" value="Login">
         </form>
+        <a href="/register">Register</a>
     </section>
 <?php
 }
@@ -34,6 +35,7 @@ function registerScreen($username, $email) {
             <input type="password" name="password" placeholder="Password">
             <input type="submit" name="register" value="Register">
         </form>
+        <a href="/login">Login</a>
     </section>
 <?php
 }
